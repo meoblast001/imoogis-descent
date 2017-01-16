@@ -9,4 +9,5 @@ You will need Node.js and NPM installed.
 To compile:
 
     npm install
+    bower install
     npm start
