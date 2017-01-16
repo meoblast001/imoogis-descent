@@ -1,0 +1,8 @@
+{
+  "name": "imoogis-descent",
+  "version": "0.0.0",
+  "private": false,
+  "dependencies": {
+    "excalibur": "latest"
+  }
+}
