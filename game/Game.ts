@@ -4,6 +4,7 @@
 
 var game = new ex.Engine();
 
+// Load resources.
 var loader = new ex.Loader();
 for (var resource in Resources) {
   loader.addResource(Resources[resource]);
