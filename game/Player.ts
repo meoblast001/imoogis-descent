@@ -2,8 +2,11 @@
 /// <reference path="Resources.ts" />
 
 class Player extends ex.Actor {
-  private static readonly SinkRate = 0.075;
-  private static readonly FloatRate = 0.05;
+  private static readonly SinkRate: number = 0.075;
+  private static readonly FloatRate: number = 0.05;
+  private static readonly AdvanceRate: number = 0.1;
+
+  private isClicked: boolean = false;
 
   constructor(x: number, y: number) {
     super(x, y);
@@ -12,13 +15,16 @@ class Player extends ex.Actor {
   public onInitialize(engine: ex.Engine) {
     this.addDrawing(Resources[RID.TextureSubmarine]);
     this.collisionType = ex.CollisionType.Passive;
+    engine.input.pointers.primary.on('down', () => this.isClicked = true);
+    engine.input.pointers.primary.on('up', () => this.isClicked = false);
   }
 
   public update(engine: ex.Engine, delta: number) {
     super.update(engine, delta);
 
     // Get behaviour based on input.
-    var doSink = engine.input.keyboard.isHeld(ex.Input.Keys.Space)
+    var doSink = engine.input.keyboard.isHeld(ex.Input.Keys.Space) ||
+                 this.isClicked;
 
     // Sink or float.
     if (doSink) {
@@ -28,5 +34,8 @@ class Player extends ex.Actor {
     } else {
       this.pos.y = 0;
     }
+
+    // Move forward.
+    this.pos.x += Player.AdvanceRate * delta;
   }
 }
