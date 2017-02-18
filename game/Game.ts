@@ -2,7 +2,11 @@
 /// <reference path="Resources.ts" />
 /// <reference path="GameplayScene.ts" />
 
-var game = new ex.Engine();
+var game = new ex.Engine({
+  width: GameSize.Width,
+  height: GameSize.Height,
+  canvasElementId: 'game'
+});
 
 // Load resources.
 var loader = new ex.Loader();

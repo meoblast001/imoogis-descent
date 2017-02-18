@@ -7,3 +7,8 @@ enum RID {
 var Resources: { [id: string]: ex.Texture } = { };
 Resources[RID.TextureSubmarine] =
   new ex.Texture("assets/sprites/submarine.png");
+
+var GameSize = {
+  Width: 1000,
+  Height: 600
+}
