@@ -1,4 +1,5 @@
 /// <reference path="../bower_components/excalibur/dist/excalibur.d.ts" />
+/// <reference path="Resources.ts" />
 
 class VerticalLevelCamera extends ex.BaseCamera {
   private xOffset;
@@ -11,9 +12,11 @@ class VerticalLevelCamera extends ex.BaseCamera {
 
   public getFocus(): ex.Vector {
     if (this._follow) {
+      var focusY = Math.floor(this._follow.pos.y / GameSize.Height) *
+                   GameSize.Height + GameSize.Height / 2;
       return new ex.Vector(
         this._follow.pos.x + this._follow.getWidth() / 2 + this.xOffset,
-        this._follow.pos.y + this._follow.getHeight() / 2 + this.yOffset);
+        focusY + this.yOffset);
     } else {
       super.getFocus();
     }
